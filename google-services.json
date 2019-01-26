@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "471954033609",
+    "firebase_url": "https://fcm-chat-ionic.firebaseio.com",
+    "project_id": "fcm-chat-ionic",
+    "storage_bucket": "fcm-chat-ionic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471954033609:android:7080ce5bba81cafe",
+        "android_client_info": {
+          "package_name": "fcm.chat.ionic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471954033609-3plqvt7rhmpskqf4s26nc5tk11fdqffv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF95vr06HVoOxnr3EHO4i_Ka-S04f_5FM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
