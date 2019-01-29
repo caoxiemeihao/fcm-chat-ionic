@@ -11,8 +11,36 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { Firebase } from '@ionic-native/firebase';
-import { FCM } from '@ionic-native/fcm';
+
+export const config = {
+  apiKey: "AIzaSyBoLBdKFcFY_LjxYMFh7Bib-zAhQPnzM6o",
+  authDomain: "fcm-chat-ionic.firebaseapp.com",
+  databaseURL: "https://fcm-chat-ionic.firebaseio.com",
+  projectId: "fcm-chat-ionic",
+  storageBucket: "fcm-chat-ionic.appspot.com",
+  messagingSenderId: "471954033609"
+};
+
+/*
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBoLBdKFcFY_LjxYMFh7Bib-zAhQPnzM6o",
+    authDomain: "fcm-chat-ionic.firebaseapp.com",
+    databaseURL: "https://fcm-chat-ionic.firebaseio.com",
+    projectId: "fcm-chat-ionic",
+    storageBucket: "fcm-chat-ionic.appspot.com",
+    messagingSenderId: "471954033609"
+  };
+  firebase.initializeApp(config);
+</script>
+*/
 
 @NgModule({
   declarations: [
@@ -25,7 +53,9 @@ import { FCM } from '@ionic-native/fcm';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(config),
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,7 +71,6 @@ import { FCM } from '@ionic-native/fcm';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Firebase,
-    FCM
   ]
 })
 export class AppModule { }

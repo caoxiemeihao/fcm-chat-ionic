@@ -1,27 +1,48 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { _Firebase } from '../action/firebase';
-import { _FCM } from '../action/fcm';
+
+import { FcmService } from '../service/fcm.service';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [_Firebase, _FCM]
+  providers: [FcmService]
 })
 export class MyApp {
   rootPage: any = TabsPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, firebase: _Firebase, fcm: _FCM) {
-    platform.ready().then(() => {
+  constructor(
+    private platform: Platform,
+    statusBar: StatusBar,
+    splashScreen: SplashScreen,
+    private fcm: FcmService,
+    private toastController: ToastController
+  ) {
+    this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      firebase.init();
-      fcm.init();
+      // this.notificationSetup();
     });
+  }
+
+  private notificationSetup() {
+    this.fcm.getToken()
+    this.fcm.listenToNotifications()
+      .subscribe(msg => {
+        this.platform.is('ios')
+          ? this.presentToast(msg.aps.alert)
+          : this.presentToast(msg.body)
+      })
+  }
+
+  private async presentToast(message: string) {
+    let toast = await this.toastController.create({ message, duration: 3000 })
+
+    toast.present()
   }
 }
